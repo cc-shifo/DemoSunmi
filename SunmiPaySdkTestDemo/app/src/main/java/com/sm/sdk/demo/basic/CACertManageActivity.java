@@ -40,11 +40,12 @@ public class CACertManageActivity extends BaseAppCompatActivity {
                 while ((len = is.read(buffer)) != -1) {
                     os.write(buffer, 0, len);
                 }
+                ByteArrayOutputStream finalOs = os;
                 runOnUiThread(() -> {
                     EditText editText = findViewById(R.id.edt_install_cert_name);
                     editText.setText("TestCert");
                     editText = findViewById(R.id.edt_install_cert_contents);
-                    editText.setText(os.toString());
+                    editText.setText(finalOs.toString());
                     editText = findViewById(R.id.edt_uninstall_cert_name);
                     editText.setText("TestCert");
                 });
